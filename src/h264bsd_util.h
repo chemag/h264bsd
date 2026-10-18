@@ -36,6 +36,7 @@
 #include <stdint.h>
 #include "basetype.h"
 #include "h264bsd_cfg.h"
+#include "h264bsd_allocator.h"
 #include "h264bsd_stream.h"
 #include "h264bsd_image.h"
 
@@ -141,13 +142,13 @@
 /* macro to allocate memory */
 #define ALLOCATE(ptr, count, type) \
 { \
-    (ptr) = malloc((count) * sizeof(type)); \
+    (ptr) = h264bsdAllocMemory((count) * sizeof(type)); \
 }
 
 /* macro to free allocated memory */
 #define FREE(ptr) \
 { \
-    free((ptr)); (ptr) = NULL; \
+    h264bsdFreeMemory((ptr)); (ptr) = NULL; \
 }
 
 #define ALIGN(ptr, bytePos) \
